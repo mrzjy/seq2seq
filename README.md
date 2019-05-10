@@ -105,7 +105,7 @@ The code is originally used for training on Chinese language, hence there are no
 
 - **What data format?**
 
-By default, all input data is considered present in one data_dir, as follows:
+By default, all input data is in raw string format, and is considered present in one data_dir, as follows:
 
 my_data_dir
 
