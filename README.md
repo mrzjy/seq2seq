@@ -53,7 +53,7 @@ Set get_all_beams=True, then you could get all beam search results printed in th
 - In order to **export a model** (e.g., the best model saved during training):
 
 ~~~Python
-python export.py --hparams=model=rnn,model_dir=saved_model/S2SA/best
+python export.py --hparams=model=rnn,model_dir=saved_model/S2S/best
 ~~~
 
 Then the exported model will show up in the exported_model/rnn by default. (Make sure you input the right model type: model=rnn while model_dir=path/to/Transformer will raise error)
