@@ -262,7 +262,16 @@ def pred_input_fn_builder(input_file, tokenizer, hparams, max_seq_len=40):
 
 class Tokenizer:
     def __init__(self, tool='hanlp', vocab_path='data/vocab'):
-        self.tool = tool
+        self.tool_name = tool
+        if tool.lower() == 'jieba':
+            import jieba
+            self.tool = jieba
+        elif tool.lower() == 'hanlp':
+            from pyhanlp import HanLP
+            self.tool = HanLP
+        else:
+            raise Exception("Unknown tokenization tool")
+
         with open(vocab_path, 'r', encoding='utf-8') as f:
             self.vocab = [l.strip().split()[0] for l in f.readlines()]
 
@@ -275,12 +284,10 @@ class Tokenizer:
         return reunited.split()
 
     def tokenize_line(self, string, return_string=True):
-        if self.tool.lower() == 'jieba':
-            import jieba
-            tokenized = [w for w in jieba.cut(string) if w != ' ']
-        elif self.tool.lower() == 'hanlp':
-            from pyhanlp import HanLP
-            tokenized = [term.word for term in HanLP.segment(string) if term != ' ']
+        if self.tool_name.lower() == 'jieba':
+            tokenized = [w for w in self.tool.cut(string) if w != ' ']
+        elif self.tool_name.lower() == 'hanlp':
+            tokenized = [term.word for term in self.tool.segment(string) if term != ' ']
         else:
             raise Exception("Unknown tokenization tool")
         if len(tokenized) == 0:
