@@ -82,7 +82,7 @@ def create_standard_hparams():
         MMI_decode=1,  # use MMI when decoding(inference), applicable only for predict.py
 
         # tricks
-        char=True,  # char-level topkenization
+        char=True,  # char-level tokenization
         reverse_sequence=True,   # reverse sequence generation (will be reversed back to normal finally)
 
         # Train

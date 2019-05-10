@@ -120,6 +120,11 @@ my_data_dir
 ├── vocab
 
 For x or y files, each line is a **tokenized (space-splitted)** sequence (e.g. 你 今天 好 吗 ？)
+
+However, if you set char=True, then each line will be tokenized into chars, no matter it's already tokenized ot not:
+
+(e.g, "你 今天 好 吗" will be processed to "你 今 天 好 吗")
+
 For vocab file, each line is a token, **make sure you set the first 3 lines** as:
 
 &lt;PAD&gt;
